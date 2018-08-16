@@ -13,6 +13,8 @@
 		C4F7DA012123C63400983241 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4F7DA002123C63400983241 /* Assets.xcassets */; };
 		C4F7DA042123C63400983241 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4F7DA022123C63400983241 /* LaunchScreen.storyboard */; };
 		C4F7DA072123C63400983241 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C4F7DA062123C63400983241 /* main.m */; };
+		C4F7DA1D21250E3000983241 /* VideoCamaraCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = C4F7DA1C21250E3000983241 /* VideoCamaraCapture.m */; };
+		C4F7DA202125122600983241 /* VideoConfigParam.m in Sources */ = {isa = PBXBuildFile; fileRef = C4F7DA1F2125122600983241 /* VideoConfigParam.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		C4F7DA032123C63400983241 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C4F7DA052123C63400983241 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4F7DA062123C63400983241 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C4F7DA1B21250E3000983241 /* VideoCamaraCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoCamaraCapture.h; sourceTree = "<group>"; };
+		C4F7DA1C21250E3000983241 /* VideoCamaraCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoCamaraCapture.m; sourceTree = "<group>"; };
+		C4F7DA1E2125122600983241 /* VideoConfigParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoConfigParam.h; sourceTree = "<group>"; };
+		C4F7DA1F2125122600983241 /* VideoConfigParam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoConfigParam.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +162,10 @@
 		C4F7DA192123C89000983241 /* Capture */ = {
 			isa = PBXGroup;
 			children = (
+				C4F7DA1B21250E3000983241 /* VideoCamaraCapture.h */,
+				C4F7DA1C21250E3000983241 /* VideoCamaraCapture.m */,
+				C4F7DA1E2125122600983241 /* VideoConfigParam.h */,
+				C4F7DA1F2125122600983241 /* VideoConfigParam.m */,
 			);
 			path = Capture;
 			sourceTree = "<group>";
@@ -239,7 +249,9 @@
 			files = (
 				C4F7D9FC2123C63200983241 /* ViewController.m in Sources */,
 				C4F7DA072123C63400983241 /* main.m in Sources */,
+				C4F7DA202125122600983241 /* VideoConfigParam.m in Sources */,
 				C4F7D9F92123C63200983241 /* AppDelegate.m in Sources */,
+				C4F7DA1D21250E3000983241 /* VideoCamaraCapture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

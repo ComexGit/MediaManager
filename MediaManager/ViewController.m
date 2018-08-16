@@ -10,13 +10,24 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView *sourceWindow;
+@property (weak, nonatomic) IBOutlet UIView *desWindow;
+@property (weak, nonatomic) IBOutlet UITextView *logView;
+
+@property (weak, nonatomic) IBOutlet UISwitch *recordSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *soundSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *codecSwitch;
+
+
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    
+    
 }
 
 
