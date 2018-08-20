@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,41 +20,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHL-GY-Ozh">
-                                <rect key="frame" x="30" y="50" width="315" height="200"/>
+                                <rect key="frame" x="30" y="50" width="315" height="236.5"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="gqd-Wo-ePc"/>
+                                    <constraint firstAttribute="width" secondItem="DHL-GY-Ozh" secondAttribute="height" multiplier="4:3" id="bl9-kM-0PV"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aBF-x2-93r">
-                                <rect key="frame" x="30" y="392" width="315" height="200"/>
+                                <rect key="frame" x="30" y="411" width="315" height="236"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="aBF-x2-93r" secondAttribute="height" multiplier="4:3" id="HW4-fV-cGm"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTf-Rg-STB">
-                                <rect key="frame" x="30" y="258" width="62" height="30"/>
+                                <rect key="frame" x="30" y="294.5" width="62" height="30"/>
                                 <state key="normal" title="开始录制"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEb-7v-hkC">
-                                <rect key="frame" x="30" y="334" width="62" height="30"/>
+                                <rect key="frame" x="30" y="370.5" width="62" height="30"/>
                                 <state key="normal" title="翻转镜头"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8u-ki-iQk">
-                                <rect key="frame" x="30" y="296" width="62" height="30"/>
+                                <rect key="frame" x="30" y="332.5" width="62" height="30"/>
                                 <state key="normal" title="开启声音"/>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a96-py-90c">
-                                <rect key="frame" x="102" y="258" width="51" height="31"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="a96-py-90c">
+                                <rect key="frame" x="102" y="294.5" width="51" height="31"/>
+                                <connections>
+                                    <action selector="clickRecord:" destination="BYZ-38-t0r" eventType="valueChanged" id="bdc-xv-TRP"/>
+                                </connections>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ThY-4r-d40">
-                                <rect key="frame" x="102" y="295.5" width="51" height="31"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ThY-4r-d40">
+                                <rect key="frame" x="102" y="332" width="51" height="31"/>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mfV-te-sRw">
-                                <rect key="frame" x="102" y="333.5" width="51" height="31"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mfV-te-sRw">
+                                <rect key="frame" x="102" y="370" width="51" height="31"/>
                             </switch>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MOA-NS-B3Z">
-                                <rect key="frame" x="164" y="258" width="181" height="126"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MOA-NS-B3Z">
+                                <rect key="frame" x="164" y="294.5" width="181" height="108.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -61,18 +67,21 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="kEb-7v-hkC" secondAttribute="trailing" constant="283" id="3F3-lg-7OR"/>
+                            <constraint firstItem="MOA-NS-B3Z" firstAttribute="trailing" secondItem="DHL-GY-Ozh" secondAttribute="trailing" id="66O-GY-aOI"/>
                             <constraint firstItem="ThY-4r-d40" firstAttribute="centerY" secondItem="M8u-ki-iQk" secondAttribute="centerY" id="99x-r9-K0Q"/>
                             <constraint firstItem="DHL-GY-Ozh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="CKc-wy-np0"/>
+                            <constraint firstItem="aBF-x2-93r" firstAttribute="top" secondItem="MOA-NS-B3Z" secondAttribute="bottom" constant="8" id="Grj-Ta-KSS"/>
                             <constraint firstItem="ThY-4r-d40" firstAttribute="leading" secondItem="a96-py-90c" secondAttribute="leading" id="HGe-ay-94S"/>
                             <constraint firstItem="GTf-Rg-STB" firstAttribute="leading" secondItem="DHL-GY-Ozh" secondAttribute="leading" id="I0z-og-i5d"/>
                             <constraint firstItem="M8u-ki-iQk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DHL-GY-Ozh" secondAttribute="leading" id="Pq0-ic-XoJ"/>
-                            <constraint firstItem="aBF-x2-93r" firstAttribute="height" secondItem="DHL-GY-Ozh" secondAttribute="height" id="TzH-X8-yZ0"/>
+                            <constraint firstItem="MOA-NS-B3Z" firstAttribute="leading" secondItem="a96-py-90c" secondAttribute="trailing" constant="13" id="UQl-Ef-QKY"/>
                             <constraint firstItem="mfV-te-sRw" firstAttribute="leading" secondItem="a96-py-90c" secondAttribute="leading" id="Vfb-55-GP0"/>
                             <constraint firstItem="aBF-x2-93r" firstAttribute="leading" secondItem="DHL-GY-Ozh" secondAttribute="leading" id="Vmf-Xm-KM8"/>
                             <constraint firstItem="GTf-Rg-STB" firstAttribute="top" secondItem="DHL-GY-Ozh" secondAttribute="bottom" constant="8" id="WV0-tM-0ci"/>
                             <constraint firstItem="kEb-7v-hkC" firstAttribute="top" secondItem="M8u-ki-iQk" secondAttribute="bottom" constant="8" id="XjO-75-c6f"/>
                             <constraint firstItem="kEb-7v-hkC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DHL-GY-Ozh" secondAttribute="leading" id="Z8a-9S-fk7"/>
                             <constraint firstItem="DHL-GY-Ozh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="gvX-e0-BIk"/>
+                            <constraint firstItem="MOA-NS-B3Z" firstAttribute="top" secondItem="DHL-GY-Ozh" secondAttribute="bottom" constant="8" id="hBZ-Gj-vrx"/>
                             <constraint firstItem="aBF-x2-93r" firstAttribute="trailing" secondItem="DHL-GY-Ozh" secondAttribute="trailing" id="i3A-a2-kfQ"/>
                             <constraint firstItem="mfV-te-sRw" firstAttribute="centerY" secondItem="kEb-7v-hkC" secondAttribute="centerY" id="if5-IT-TT4"/>
                             <constraint firstItem="M8u-ki-iQk" firstAttribute="top" secondItem="GTf-Rg-STB" secondAttribute="bottom" constant="8" id="rOz-JA-YN7"/>
@@ -82,7 +91,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DHL-GY-Ozh" secondAttribute="trailing" constant="30" id="wiB-G0-gho"/>
                             <constraint firstItem="a96-py-90c" firstAttribute="leading" secondItem="GTf-Rg-STB" secondAttribute="trailing" constant="10" id="wzo-so-0x9"/>
                             <constraint firstItem="aBF-x2-93r" firstAttribute="centerX" secondItem="DHL-GY-Ozh" secondAttribute="centerX" id="xwf-um-Xjf"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aBF-x2-93r" secondAttribute="bottom" constant="75" id="ybb-0j-JNR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aBF-x2-93r" secondAttribute="bottom" constant="20" id="ybb-0j-JNR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -97,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-55.200000000000003" y="97.601199400299862"/>
+            <point key="canvasLocation" x="-308" y="73"/>
         </scene>
     </scenes>
 </document>

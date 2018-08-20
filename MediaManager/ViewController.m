@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "VideoCamaraCapture.h"
+#import "VideoConfigParam.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface ViewController ()
 
@@ -18,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *soundSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *codecSwitch;
 
+@property (strong, nonatomic) VideoCamaraCapture *vcCapture;
 
 @end
 
@@ -26,10 +30,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    AVSampleBufferDisplayLayer *sbLayer = [AVSampleBufferDisplayLayer new];
+    sbLayer.backgroundColor = [UIColor blackColor].CGColor;
+    sbLayer.videoGravity = AVLayerVideoGravityResizeAspect;
     
+    [self.sourceWindow.layer addSublayer:sbLayer];
+    sbLayer.frame = self.sourceWindow.bounds;
     
+    VideoConfigParam *param = [VideoConfigParam new];
+    param.sessionPreset = AVCaptureSessionPreset640x480;
+    
+    self.vcCapture = [[VideoCamaraCapture alloc]initWithParam:param];
+    self.vcCapture.displayLayer = sbLayer;
 }
 
+- (IBAction)clickRecord:(UISwitch *)sender {
+
+    sender.selected = !sender.selected;
+    
+    if (sender.isSelected) {
+        [self.vcCapture startCapture];
+    }
+    else {
+        [self.vcCapture stopCapture];
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @class VideoConfigParam;
+@class AVSampleBufferDisplayLayer;
 
 @interface VideoCamaraCapture : NSObject
+
+@property (nonatomic, weak) AVSampleBufferDisplayLayer *displayLayer;
 
 - (instancetype)initWithParam:(VideoConfigParam *)param;
 

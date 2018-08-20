@@ -10,14 +10,15 @@
 #import <AVFoundation/AVFoundation.h>
 #import "VideoConfigParam.h"
 
-@interface VideoCamaraCapture() {
+@interface VideoCamaraCapture() <AVCaptureVideoDataOutputSampleBufferDelegate>{
     
     VideoConfigParam *videoParam;
     dispatch_queue_t videoQueue;
 }
 
 @property(nonatomic, strong)  AVCaptureSession *captureSession;
-
+@property(nonatomic, strong)  AVCaptureVideoDataOutput *videoOutput;
+@property(nonatomic, strong)  AVCaptureConnection *videoConnection;
 @end
 
 
@@ -28,14 +29,14 @@
     if (self = [super init]) {
         
         videoParam = param;
-        videoQueue = dispatch_queue_create("com.mediaMgr.videoCapture", NULL);
+        videoQueue = dispatch_queue_create("com.mediaMgr.videoCapture", DISPATCH_QUEUE_CONCURRENT);
     }
     return self;
 }
 
 - (AVCaptureSession *)captureSession {
     
-    if (_captureSession) {
+    if (!_captureSession) {
         
         _captureSession = [AVCaptureSession new];
         [self configCaptureSession];
@@ -58,13 +59,29 @@
     }
     
     //3
-    AVCaptureVideoDataOutput *videoOutput = [AVCaptureVideoDataOutput new];
+    self.videoOutput = [AVCaptureVideoDataOutput new];
+    NSDictionary *videoOutputSettings = @{(NSString *)kCVPixelBufferPixelFormatTypeKey:
+                                              @(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange),
+                                          }; 
+    _videoOutput.videoSettings = videoOutputSettings;
+    [_videoOutput setSampleBufferDelegate:self queue:videoQueue];
+    [self.captureSession addOutput:_videoOutput];
     
+    //4
+    if (self.videoOutput) {
+        
+        self.videoConnection = [self.videoOutput connectionWithMediaType:AVMediaTypeVideo];
+        
+        if (self.videoConnection) {
+            self.videoConnection.videoOrientation = AVCaptureVideoOrientationPortrait;
+            self.videoConnection.automaticallyAdjustsVideoMirroring = NO;
+        }
+    }
 }
 
 - (void) startCapture {
     
-    if ([self.captureSession isRunning]) {
+    if (![self.captureSession isRunning]) {
         dispatch_async(videoQueue, ^{
             [self.captureSession startRunning];
         });
@@ -77,6 +94,15 @@
         dispatch_async(videoQueue, ^{
             [self.captureSession stopRunning];
         });
+    }
+}
+
+#pragma mark - AVCaptureVideoDataOutputSampleBufferDelegate
+
+- (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
+    
+    if (self.displayLayer) {
+        [self.displayLayer enqueueSampleBuffer:sampleBuffer];
     }
 }
 
