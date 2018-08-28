@@ -40,7 +40,7 @@
     VideoConfigParam *param = [VideoConfigParam new];
     param.sessionPreset = AVCaptureSessionPreset640x480;
     
-    self.vcCapture = [[VideoCamaraCapture alloc]initWithParam:param];
+    self.vcCapture = [[VideoCamaraCapture alloc] initWithParam:param];
     self.vcCapture.displayLayer = sbLayer;
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4E34FEA2134EDEE00F782A0 /* VideoH264Encoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E34FE92134EDEE00F782A0 /* VideoH264Encoder.m */; };
 		C4F7D9F92123C63200983241 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4F7D9F82123C63200983241 /* AppDelegate.m */; };
 		C4F7D9FC2123C63200983241 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4F7D9FB2123C63200983241 /* ViewController.m */; };
 		C4F7D9FF2123C63200983241 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4F7D9FD2123C63200983241 /* Main.storyboard */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C4E34FE82134EDEE00F782A0 /* VideoH264Encoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoH264Encoder.h; sourceTree = "<group>"; };
+		C4E34FE92134EDEE00F782A0 /* VideoH264Encoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoH264Encoder.m; sourceTree = "<group>"; };
 		C4F7D9F42123C63200983241 /* MediaManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4F7D9F72123C63200983241 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C4F7D9F82123C63200983241 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 		C4F7DA182123C87E00983241 /* VideoToolBox */ = {
 			isa = PBXGroup;
 			children = (
+				C4E34FE82134EDEE00F782A0 /* VideoH264Encoder.h */,
+				C4E34FE92134EDEE00F782A0 /* VideoH264Encoder.m */,
 			);
 			path = VideoToolBox;
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 			files = (
 				C4F7D9FC2123C63200983241 /* ViewController.m in Sources */,
 				C4F7DA072123C63400983241 /* main.m in Sources */,
+				C4E34FEA2134EDEE00F782A0 /* VideoH264Encoder.m in Sources */,
 				C4F7DA202125122600983241 /* VideoConfigParam.m in Sources */,
 				C4F7D9F92123C63200983241 /* AppDelegate.m in Sources */,
 				C4F7DA1D21250E3000983241 /* VideoCamaraCapture.m in Sources */,

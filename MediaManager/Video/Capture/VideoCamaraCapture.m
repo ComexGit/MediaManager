@@ -29,7 +29,7 @@
     if (self = [super init]) {
         
         videoParam = param;
-        videoQueue = dispatch_queue_create("com.mediaMgr.videoCapture", DISPATCH_QUEUE_CONCURRENT);
+        videoQueue = dispatch_queue_create("com.mediaMgr.videoCapture", NULL);
     }
     return self;
 }
@@ -82,7 +82,7 @@
 - (void) startCapture {
     
     if (![self.captureSession isRunning]) {
-        dispatch_async(videoQueue, ^{
+        dispatch_sync(videoQueue, ^{
             [self.captureSession startRunning];
         });
     }
@@ -91,7 +91,7 @@
 - (void) stopCapture {
     
     if ([self.captureSession isRunning]) {
-        dispatch_async(videoQueue, ^{
+        dispatch_sync(videoQueue, ^{
             [self.captureSession stopRunning];
         });
     }
