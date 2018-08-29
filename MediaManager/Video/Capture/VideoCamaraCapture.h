@@ -7,15 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
 @class VideoConfigParam;
-@class AVSampleBufferDisplayLayer;
+
+@protocol VideoCamaraCaptureDelegate <NSObject>
+
+- (void) videoCamaraDidCaptureWithSampleBuffer:(CMSampleBufferRef)sampleBuffer;
+
+@end
+
 
 @interface VideoCamaraCapture : NSObject
 
-@property (nonatomic, weak) AVSampleBufferDisplayLayer *displayLayer;
-
-- (instancetype)initWithParam:(VideoConfigParam *)param;
+- (instancetype)initWithParam:(VideoConfigParam *)param delegate:(id<VideoCamaraCaptureDelegate>)delegate;
 
 - (void) startCapture;
 - (void) stopCapture;

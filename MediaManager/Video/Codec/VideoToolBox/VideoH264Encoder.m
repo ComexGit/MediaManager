@@ -7,7 +7,6 @@
 //
 
 #import "VideoH264Encoder.h"
-#import <VideoToolbox/VideoToolbox.h>
 
 
 @interface VideoH264Encoder () {
@@ -17,13 +16,16 @@
     VTCompressionSessionRef encodeSession;
 }
 
+@property (nonatomic, weak) id<VideoH264EncoderDelegate> delegate;
+
 @end
 
 @implementation VideoH264Encoder
 
-- (instancetype)initWithDelegate:(id)delegate {
+- (instancetype)initWithDelegate:(id<VideoH264EncoderDelegate>)delegate;{
     
     if (self = [super init]) {
+        self.delegate = delegate;
         encodeQueue = dispatch_queue_create("com.mediaMgr.videoEncode", NULL);
     }
     return self;
@@ -68,7 +70,7 @@
 }
 
 //编码一帧图像
-- (void) encodeFrame:(CMSampleBufferRef )sampleBuffer {
+- (void) encodeFrame:(CMSampleBufferRef)sampleBuffer {
     
     dispatch_sync(encodeQueue, ^{
         
@@ -117,6 +119,14 @@ void encodeOutputCallback(void *userData, void *sourceFrameRefCon, OSStatus stat
         NSLog(@"didCompressH264 data is not ready ");
         return;
     }
+    VideoH264Encoder* encoder = (__bridge VideoH264Encoder*)userData;
+    
+    if ([encoder.delegate respondsToSelector:@selector(encoder:didReceiveSampleBuffer:)]) {
+        [encoder.delegate encoder:encoder didReceiveSampleBuffer:sampleBuffer];
+    }
+}
+
+- (void) sampleBufferToData:(VideoH264Encoder*) encoder sampleBuffer:(CMSampleBufferRef)sampleBuffer{
     
     NSData *sps = nil;
     NSData *pps = nil;
@@ -124,7 +134,7 @@ void encodeOutputCallback(void *userData, void *sourceFrameRefCon, OSStatus stat
     
     //    NSLog(@"----sample Num :%d",CMSampleBufferGetNumSamples(sampleBuffer));
     
-    OSStatus ret = status;
+    OSStatus ret = 0;
     if (ret == noErr) {
         
         bool keyframe = !CFDictionaryContainsKey((CFArrayGetValueAtIndex(CMSampleBufferGetSampleAttachmentsArray(sampleBuffer, true), 0)), kCMSampleAttachmentKey_NotSync);
@@ -153,10 +163,7 @@ void encodeOutputCallback(void *userData, void *sourceFrameRefCon, OSStatus stat
             {
                 sps = [NSData dataWithBytesNoCopy:(void *)sparameterSet length:sparameterSetSize freeWhenDone:NO];
                 pps = [NSData dataWithBytesNoCopy:(void *)pparameterSet length:pparameterSetSize freeWhenDone:NO];
-                
-//                self.NALUnitHeaderLength = NALUnitHeaderLengthOut;
             }
-            
         }
         
         if (ret == noErr) {
@@ -193,18 +200,18 @@ void encodeOutputCallback(void *userData, void *sourceFrameRefCon, OSStatus stat
                         //拷贝NALU数据
                         data = [NSData dataWithBytesNoCopy:(void *)(dataPointer + bufferOffset + NALUnitHeaderLength) length:NALUnitLength freeWhenDone:NO];
                         
-//                        if ([self.delegate respondsToSelector:@selector(encoder:didReceiveSPS:andPPS:andData:pts:isKeyFrame:)]) {
-//
-//                            if (count++%100 == 0) {
-//                                NSLog(@"H.264 Delegate Data:%lu, SPS&PPS:%@, isKeyFrame:%@", (unsigned long)data.length, sps&&pps?@"YES":@"NO", keyframe?@"YES":@"NO");
-//                            }
-//
-//
-//                            CMTime presentationTimeStamp = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer);
-//                            NSTimeInterval pts = CMTimeGetSeconds(presentationTimeStamp);
-//
-//                            [self.delegate encoder:self didReceiveSPS:sps andPPS:pps andData:data pts:(int64_t)(pts*1000) isKeyFrame:keyframe];
-//                        }
+                        if ([encoder.delegate respondsToSelector:@selector(encoder:didReceiveSPS:andPPS:andData:pts:isKeyFrame:)]) {
+                            
+                            if (count++%100 == 0) {
+                                NSLog(@"H.264 Delegate Data:%lu, SPS&PPS:%@, isKeyFrame:%@", (unsigned long)data.length, sps&&pps?@"YES":@"NO", keyframe?@"YES":@"NO");
+                            }
+                            
+                            
+                            CMTime presentationTimeStamp = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer);
+                            NSTimeInterval pts = CMTimeGetSeconds(presentationTimeStamp);
+                            
+                            [encoder.delegate encoder:encoder didReceiveSPS:sps andPPS:pps andData:data pts:(int64_t)(pts*1000) isKeyFrame:keyframe];
+                        }
                     }
                     
                     // 移动到blockbuffer中的下一个NALU

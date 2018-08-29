@@ -7,7 +7,6 @@
 //
 
 #import "VideoCamaraCapture.h"
-#import <AVFoundation/AVFoundation.h>
 #import "VideoConfigParam.h"
 
 @interface VideoCamaraCapture() <AVCaptureVideoDataOutputSampleBufferDelegate>{
@@ -16,6 +15,7 @@
     dispatch_queue_t videoQueue;
 }
 
+@property(nonatomic, weak)    id<VideoCamaraCaptureDelegate> delegate;
 @property(nonatomic, strong)  AVCaptureSession *captureSession;
 @property(nonatomic, strong)  AVCaptureVideoDataOutput *videoOutput;
 @property(nonatomic, strong)  AVCaptureConnection *videoConnection;
@@ -24,10 +24,10 @@
 
 @implementation VideoCamaraCapture
 
-- (instancetype)initWithParam:(VideoConfigParam *)param {
+- (instancetype)initWithParam:(VideoConfigParam *)param delegate:(id<VideoCamaraCaptureDelegate>)delegate{
     
     if (self = [super init]) {
-        
+        self.delegate = delegate;
         videoParam = param;
         videoQueue = dispatch_queue_create("com.mediaMgr.videoCapture", NULL);
     }
@@ -101,8 +101,11 @@
 
 - (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
     
-    if (self.displayLayer) {
-        [self.displayLayer enqueueSampleBuffer:sampleBuffer];
+//    if (self.displayLayer) {
+//        [self.displayLayer enqueueSampleBuffer:sampleBuffer];
+//    }
+    if ([self.delegate respondsToSelector:@selector(videoCamaraDidCaptureWithSampleBuffer:)]) {
+        [self.delegate videoCamaraDidCaptureWithSampleBuffer:sampleBuffer];
     }
 }
 
