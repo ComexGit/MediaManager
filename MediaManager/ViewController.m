@@ -14,11 +14,11 @@
 @interface ViewController () <VideoCamaraCaptureDelegate,VideoH264EncoderDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *sourceWindow;
-@property (weak, nonatomic) IBOutlet UIView *desWindow;
 @property (weak, nonatomic) IBOutlet UITextView *logView;
 
 @property (weak, nonatomic) IBOutlet UISwitch *recordSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *soundSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *cameraSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *codecSwitch;
 
 @property (strong, nonatomic) VideoCamaraCapture *vcCapture;
@@ -60,6 +60,11 @@
     }
 }
 
+- (IBAction)clickEncodeSwitch:(UISwitch *)sender {
+    
+    sender.selected = !sender.selected;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -71,7 +76,13 @@
     if (self.sbLayer.status == AVQueuedSampleBufferRenderingStatusFailed) {
         [self.sbLayer flush];
     }
-    [self.videoEncoder encodeFrame:sampleBuffer];
+    
+    if (self.codecSwitch.selected) {
+        [self.videoEncoder encodeFrame:sampleBuffer];
+    }
+    else {
+        [self.sbLayer enqueueSampleBuffer:sampleBuffer];
+    }
 }
 
 - (void)encoder:(VideoH264Encoder *)encoder didReceiveSampleBuffer:(CMSampleBufferRef)sampleBuffer {
@@ -96,7 +107,7 @@
     [videoData appendData:startCode];
     [videoData appendData:data];
     
-    //write file or transfer
+    //cache or transfer
 }
 
 - (void)encoder:(VideoH264Encoder *)encoder didReceiveError:(NSInteger)errorCode {

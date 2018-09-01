@@ -206,7 +206,6 @@ void encodeOutputCallback(void *userData, void *sourceFrameRefCon, OSStatus stat
                                 NSLog(@"H.264 Delegate Data:%lu, SPS&PPS:%@, isKeyFrame:%@", (unsigned long)data.length, sps&&pps?@"YES":@"NO", keyframe?@"YES":@"NO");
                             }
                             
-                            
                             CMTime presentationTimeStamp = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer);
                             NSTimeInterval pts = CMTimeGetSeconds(presentationTimeStamp);
                             
