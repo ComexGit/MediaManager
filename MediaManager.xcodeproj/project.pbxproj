@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C1C65C62144D6CF00905D1F /* ARAudioUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1C65C52144D6CF00905D1F /* ARAudioUnit.m */; };
+		C40A2A562148BAF000E20DB9 /* AudioACCEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C40A2A552148BAF000E20DB9 /* AudioACCEncoder.m */; };
 		C4E34FEA2134EDEE00F782A0 /* VideoH264Encoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E34FE92134EDEE00F782A0 /* VideoH264Encoder.m */; };
 		C4F7D9F92123C63200983241 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4F7D9F82123C63200983241 /* AppDelegate.m */; };
 		C4F7D9FC2123C63200983241 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4F7D9FB2123C63200983241 /* ViewController.m */; };
@@ -22,6 +23,8 @@
 /* Begin PBXFileReference section */
 		0C1C65C42144D6CF00905D1F /* ARAudioUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARAudioUnit.h; sourceTree = "<group>"; };
 		0C1C65C52144D6CF00905D1F /* ARAudioUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARAudioUnit.m; sourceTree = "<group>"; };
+		C40A2A542148BAF000E20DB9 /* AudioACCEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioACCEncoder.h; sourceTree = "<group>"; };
+		C40A2A552148BAF000E20DB9 /* AudioACCEncoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioACCEncoder.m; sourceTree = "<group>"; };
 		C4E34FE82134EDEE00F782A0 /* VideoH264Encoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoH264Encoder.h; sourceTree = "<group>"; };
 		C4E34FE92134EDEE00F782A0 /* VideoH264Encoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoH264Encoder.m; sourceTree = "<group>"; };
 		C4F7D9F42123C63200983241 /* MediaManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +83,8 @@
 		0C1C65C72144D6D700905D1F /* AudioToolBox */ = {
 			isa = PBXGroup;
 			children = (
+				C40A2A542148BAF000E20DB9 /* AudioACCEncoder.h */,
+				C40A2A552148BAF000E20DB9 /* AudioACCEncoder.m */,
 			);
 			path = AudioToolBox;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				C4E34FEA2134EDEE00F782A0 /* VideoH264Encoder.m in Sources */,
 				C4F7DA202125122600983241 /* VideoConfigParam.m in Sources */,
 				C4F7D9F92123C63200983241 /* AppDelegate.m in Sources */,
+				C40A2A562148BAF000E20DB9 /* AudioACCEncoder.m in Sources */,
 				0C1C65C62144D6CF00905D1F /* ARAudioUnit.m in Sources */,
 				C4F7DA1D21250E3000983241 /* VideoCamaraCapture.m in Sources */,
 			);
